@@ -53,22 +53,21 @@
 
         static int CalculateSeatId(string number)
         {
-            var index1 = CalculateIndex(number.Substring(0, 7), 0, 127, 'F');
-            var index2 = CalculateIndex(number.Substring(7), 0, 7, 'L');
+            var sum = 0;
 
-            var totalIndex = index1 * 8 + index2;
-            return totalIndex;
-        }
-
-        static int CalculateIndex(string number, int left, int right, char lowerSign)
-        {
-            for (var i = 0; i < number.Length; i += 1)
+            for (var i = 0; i < 7; i ++)
             {
-                var s = (right - left) / 2 + 1;
-                if (number[i] == lowerSign) right -= s; else left += s;
+                if (number[i] == 'F') sum <<= 1;
+                else sum = (sum << 1) | 1;
             }
 
-            return right;
+            for (var i = 7; i < 10; i++)
+            {
+                if (number[i] == 'L') sum <<= 1;
+                else sum = (sum << 1) | 1;
+            }
+
+            return sum;
         }
     }
 }
