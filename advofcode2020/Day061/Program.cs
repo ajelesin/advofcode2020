@@ -44,7 +44,7 @@
 
                 gs += 1;
             }
-
+            
             foreach (var k in g)
             {
                 if (k.Value == gs)
@@ -57,7 +57,7 @@
             gs = 0;
 
             Console.WriteLine(sum);
-
+            
         }
 
         static void F1()
